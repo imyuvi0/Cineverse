@@ -1,0 +1,29 @@
+name: CineVerse Build
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install Frontend Dependencies
+        run: |
+          cd Project/booking-service/frontend
+          npm install
+
+      - name: Build Frontend
+        run: |
+          cd Project/booking-service/frontend
+          npm run build
